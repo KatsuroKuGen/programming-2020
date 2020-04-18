@@ -27,7 +27,16 @@ public:
             cout << name << " = " << this->re << "+" << this->im << "i" << endl;
         }
 
-        else if(im < 0)w
+        else if(im < 0)
+        {
+            cout << name << " = " << this->re << this->im << "i" << endl;
+        }
+    }
+
+    double operator^(complex_num name)
+    {
+        double a;
+        a = sqrt(pow(this ->im, 2) + pow(this->re, 2));
         return a;
     }
 
