@@ -8,7 +8,7 @@ string command;
 
 int main() {
     cout << "command list: ";
-    cout << " [ push ]; [ show ]; [ * ]; [ + ]; [ >> ](>>push = length); [ stop ]; " << endl;
+    cout << " [ push ]; [ show ]; [ * ]; [ + ]; [ len ]; [ stop ]; " << endl;
     cout << "(write all command without '[' ; ']') " << endl;
 
     while (command != "stop")
