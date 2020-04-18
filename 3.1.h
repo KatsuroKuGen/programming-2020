@@ -1,71 +1,60 @@
-#ifndef LAB_1_THIRD_1_H
-#define LAB_1_THIRD_1_H
+#ifndef LAB_1_3_1_H
+#define LAB_1_3_1_H
 #include<iostream>
 #include <cmath>
-using namespace std;
 
-class complex_num {
+class Complex_num{
 private:
     double im;
     double re;
 
 public:
-    complex_num(string name){}
+    Complex_num(double re, double im): re(re), im(im){}
 
-    void push(string name)
+    void push()
     {
-        cout << "enter the real number for " << name << endl;
-        cin >> this->re;
-        cout << "enter the imaginary number for " << name << endl;
-        cin >> this->im;
+        std::cout << "enter the real number for your complex_num "  << std::endl;
+        std::cin >> this->re;
+        std::cout << "enter the imaginary number for your complex_num " << std::endl;
+        std::cin >> this->im;
     }
 
-    void show(string name)
+    void show()
     {
         if(im >= 0)
         {
-            cout << name << " = " << this->re << "+" << this->im << "i" << endl;
+            std::cout << "complex_num = " << this->re << "+" << this->im << "i" << std::endl;
         }
 
         else if(im < 0)
         {
-            cout << name << " = " << this->re << this->im << "i" << endl;
+            std::cout << "complex_num = " << this->re << this->im << "i" << std::endl;
         }
     }
 
-    double operator^(complex_num name)
+    double Length()
     {
-        double a;
-        a = sqrt(pow(this ->im, 2) + pow(this->re, 2));
-        return a;
+        return sqrt(this->re * this->re + this->im * this->im);
     }
 
-    void operator*(complex_num &a)
+    operator double()
     {
-        string command;
-        cout << "enter the command(re; complex_num):";
-        cin >> command;
-        if (command == "re")
-        {
-            int num;
-            cout << "enter the real num which you want to multiplication: " << endl;
-            cin >> num;
-            this->re = this->re * num;
-            this->im = this->im * num;
-        }
-        if (command =="complex_num")
-        {
-            this->re = this->re*a.re - this->im * a.im;
-            this->im = this->im*a.re + this->re * a.im;
-            cout << "complete" << endl;
-        }
+        return this->Length();
     }
 
-    void operator+(complex_num &a)
+    Complex_num operator*(const double num)
     {
-        this->re = this->re + a.re;
-        this->im = this->im + a.im;
-        cout << "complete" << endl;
+        return Complex_num(this->re * num, this->im * num);
+    }
+
+    Complex_num operator*(const Complex_num &a)
+    {
+        return Complex_num(this->re * a.re - this->im * a.im, this->re * a.im + this->im * a.re);
+    }
+
+    Complex_num operator+(Complex_num &a)
+    {
+        return Complex_num(this->re + a.re, this->im + a.im);
     }
 };
-#endif //LAB_1_THIRD_1_H
+#endif //LAB_1_3_1_H
