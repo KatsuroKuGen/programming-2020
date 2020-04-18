@@ -1,9 +1,9 @@
-#include "third.1.h"
+#include "3.1.h"
 #include <iostream>
 using namespace std;
 
-complex_num el_1("complex_num_1");
-complex_num el_2("complex_num_2");
+Complex_num el_1(0,0);
+Complex_num el_2(0, 0);
 string command;
 
 int main() {
@@ -23,11 +23,11 @@ int main() {
             cin >> num;
             if (num == 1)
             {
-                el_1.push("complex_num_1");
+                el_1.push();
             }
             else
                 {
-                el_2.push("complex_num_2");
+                el_2.push();
             }
         }
 
@@ -38,39 +38,49 @@ int main() {
             cin >> num;
             if (num == 1)
             {
-                el_1.show("complex_num_1");
+                el_1.show();
             }
-            else
+            else if (num == 2)
                 {
-                el_2.show("complex_num_2");
+                el_2.show();
             }
-
         }
 
         if (command == "+")
         {
-            el_1 + el_2;
+            (el_1 + el_2).show();
         }
 
         if (command == "*")
         {
-            el_1 * el_2;
+            string additional_command;
+            cout << "enter the command(re; complex_num):" << endl;
+            cin >> additional_command;
+            if (additional_command =="re")
+            {
+                double num;
+                cout << "enter the real num which you want to multiplication:" << endl;
+                cin >> num;
+                (el_1 * num).show();
+            }
+            else
+            {
+                (el_1 * el_2).show();
+            }
         }
 
         if (command == "len")
         {
             int num;
-            double result;
             cout << "enter the number of complex num (1 or 2): " << endl;
             cin >> num;
             if (command == "1")
             {
-                result = el_1 ^ el_1;
-                cout << result << endl;
-            } else
+                cout << el_1.Length() << endl;
+            }
+            else
                 {
-                result = el_2 ^ el_2;
-                cout << result << endl;
+                    cout << el_2.Length() << endl;
             }
         }
     }
