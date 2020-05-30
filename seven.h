@@ -1,5 +1,5 @@
-#ifndef UNTITLED_SEVEN_H
-#define UNTITLED_SEVEN_H
+#ifndef UNTITLED_ITERATOR_H
+#define UNTITLED_ITERATOR_H
 
 #include <iostream>
 #include <algorithm>
@@ -266,104 +266,6 @@ public:
         }
     }
 
-    Iterator<T> insert(const Iterator<T>& iterator, const T& value) {
-        if (iterator == begin()) {
-            push_top(value);
-            return begin();
-        }
-        else if (iterator == end()) {
-            push_back(value);
-            return end() - 1;
-        }
-        else {
-            T* buffer = new T[capacity];
-            int max_size = 0;
-            int position_in_buffer = -1;
-            int i = 0;
-            for (auto it = begin(); it != end(), i <= count; it++, i++) {
-                if (it == iterator) {
-                    position_in_buffer = i;
-                    buffer[i] = value;
-                    max_size++;
-                    i++;
-                }
-                buffer[i] = *it;
-                max_size++;
-            }
-            delete[] element;
-            element = new T[capacity];
-            for (int i = 0; i <= max_size; i++) {
-                element[i] = buffer[i];
-            }
-            start = 0;
-            _end = max_size;
-            count = max_size;
-            delete[] buffer;
-            return begin() + position_in_buffer;
-        }
-    }
-
-    Iterator<T> erase(const Iterator<T>& iterator) {
-        if (iterator == begin()) {
-            pop_top();
-            return begin();
-        }
-        else if (iterator == end() - 1) {
-            pop_back();
-            return end() - 1;
-        }
-        else {
-            T* buffer = new T[capacity];
-            int max_size = 0;
-            int position_in_buffer = -1;
-            int i = 0;
-            for (auto it = begin(); it != end(); it++, i++) {
-                if (it == iterator) {
-                    position_in_buffer = i;
-                    it++;
-                }
-                buffer[i] = *it;
-                max_size = i;
-            }
-            delete[] element;
-            element = new T[capacity];
-            for (int i = 0; i <= max_size; i++) {
-                element[i] = buffer[i];
-            }
-            start = 0;
-            _end = max_size + 1;
-            count = max_size + 1;
-            delete[] buffer;
-            return begin() + position_in_buffer;
-        }
-    }
-
-    void resize(const size_t & _capacity) {
-        T* buffer = new T[capacity];
-        int max_size = 0;
-        for (int i = 0; i < _capacity; i++) {
-            if (i == count) {
-                break;
-            }
-            buffer[i] = operator[](i);
-            max_size++;
-        }
-        delete[] element;
-        element = new T[_capacity + 1];
-        for (int i = 0; i < max_size; i++) {
-            element[i] = buffer[i];
-        }
-        count = max_size;
-        capacity = _capacity + 1;
-        start = 0;
-        _end = count;
-        delete[] buffer;
-    }
-
-    size_t size() const {
-        return count;
-    }
-
     T& operator[] (const size_t & i) const {
         return element[(start + i) % capacity];
     }
@@ -380,4 +282,4 @@ private:
     T* element;
 };
 
-#endif //UNTITLED_SEVEN_H
+#endif //UNTITLED_ITERATOR_H
