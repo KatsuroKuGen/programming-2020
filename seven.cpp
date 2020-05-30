@@ -1,4 +1,4 @@
-#include "seven.h"
+#include "iterator.h"
 #include <string>
 using namespace std;
 
@@ -6,11 +6,12 @@ int main() {
     int capacity, num;
     string command;
 
+
     cout << "enter the capacity:" << endl;
     cin >> capacity;
     Circular_Buffer<int> buff(capacity);
 
-    cout << "enter the command (push; show; delete; insert; pop; sort; capacity; stop) " << endl;
+    cout << "enter the command (push; pop; stop) " << endl;
     cin >> command;
 
     while(command != "stop")
@@ -54,18 +55,7 @@ int main() {
             }
             cout << endl;
         }
-        else if(command == "delete")
-        {
-            cout << "enter the number:" << endl;
-            cin >> num;
-            buff.erase(find(buff.begin(), buff.end(), num));
 
-            for (int i : buff)
-            {
-                cout << i << " ";
-            }
-            cout << endl;
-        }
         else if(command == "pop")
         {
             string push;
@@ -85,42 +75,8 @@ int main() {
             }
             cout << endl;
         }
-        else if (command == "insert")
-        {
-            int p;
-            cout << "enter the place" << endl;
-            cin >> p;
-            cout << "enter the num, witch you want to add:" << endl;
-            cin >> num;
-            buff.insert(find(buff.begin(), buff.end(), buff[p]), num);
-            for (int i : buff)
-            {
-                cout << i << " ";
-            }
-            cout << endl;
-        }
 
-        else if(command =="capacity")
-        {
-            cout << "enter the capacity" << endl;
-            cin >> capacity;
-            buff.resize(capacity);
-            for (int i : buff)
-            {
-                cout << i << " ";
-            }
-            cout << endl;
-        }
-        else if (command == "sort")
-        {
-            sort(buff.begin(), buff.end());
-            for (int i : buff)
-            {
-                cout << i << " ";
-            }
-            cout << endl;
-        }
-        cout << "enter the command (push; show; delete; insert; pop; sort; capacity; stop) " << endl;
+        cout << "enter the command (push;  pop;  stop) " << endl;
         cin >> command;
     }
 
