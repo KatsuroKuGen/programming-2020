@@ -6,7 +6,6 @@ int main() {
     int capacity, num;
     string command;
 
-
     cout << "enter the capacity:" << endl;
     cin >> capacity;
     Circular_Buffer<int> buff(capacity);
