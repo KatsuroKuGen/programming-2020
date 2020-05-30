@@ -6,6 +6,7 @@ int main() {
     int capacity, num;
     string command;
 
+
     cout << "enter the capacity:" << endl;
     cin >> capacity;
     Circular_Buffer<int> buff(capacity);
@@ -18,7 +19,7 @@ int main() {
         if(command == "push")
         {
             string push;
-            cout << "enter the variant of push (top(push_top), back(push_back), yur(your variant); stop):" << endl;
+            cout << "enter the variant of push (top(push_top), back(push_back); stop):" << endl;
             cin >> push;
             while (push != "stop")
             {
@@ -35,18 +36,6 @@ int main() {
                     cin >> num;
                     buff.push_back(num);
                 }
-
-                else if (push == "yur")
-                {
-                    int n;
-                    cout << "enter the number of element, which you want to add:" << endl;
-                    cin >> n;
-                    cout << "enter the number:" << endl;
-                    cin >> num;
-                    buff[n] = num;
-                }
-                cout << "enter the variant of push (top(push_top), back(push_back), yur(your variant); stop):" << endl;
-                cin >> push;
             }
             for (int i : buff)
             {
