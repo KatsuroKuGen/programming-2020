@@ -216,6 +216,16 @@ public:
         count = 0;
     }
 
+    Iterator<T> begin() {
+        Iterator<T> iterator(element, capacity, start, _end, start);
+        return iterator;
+    }
+
+    Iterator<T> end() {
+        Iterator<T> iterator(element, capacity, start, _end, _end);
+        return iterator;
+    }
+
     void push_back(const T& val) {
         if (start % capacity - _end % capacity == 1) {
             start = (start + 1) % capacity;
@@ -271,3 +281,5 @@ private:
     int _end;
     T* element;
 };
+
+#endif //UNTITLED_ITERATOR_H
