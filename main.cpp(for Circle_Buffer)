@@ -1,0 +1,108 @@
+#include <iostream>
+#include "Circle_Buffer.h"
+#include "Circle_Buffer.cpp"
+#include <algorithm>
+
+int main()
+{
+    string command;
+    unsigned int size;
+
+    cout << "Enter the size your Circle Buffer:" << endl;
+    cin >> size;
+
+    Circle_Buffer<int> buffer(size);
+
+    cout << "enter the values:" << endl;
+    for (auto i = buffer.begin(); i != buffer.end() ; i++)
+    {
+        int value;
+        cin >> value;
+        *i = value;
+    }
+    buffer.insert_end(25);
+    cout << endl;
+
+    while (command != "stop")
+    {
+        cout << "Command list: delete; delete_s; delete_e; insert_s; insert_e; print; print_r; resize; sort; stop" << endl;
+        cout << "Enter the command:" << endl;
+        cin >> command;
+
+        if (command == "insert_s")
+        {
+            int value;
+            cout << "enter the value :" << endl;
+            cin >> value;
+
+            buffer.insert_start(value);
+            buffer.print();
+        }
+
+        else if (command == "insert_e")
+        {
+            int value;
+            cout << "enter the value :" << endl;
+            cin >> value;
+            buffer.insert_end(value);
+            buffer.print();
+        }
+
+        else if (command == "print")
+        {
+            buffer.print();
+        }
+
+        else if (command == "resize")
+        {
+            int _size;
+
+            cout << "Enter new size:" << endl;
+            cin >> _size;
+
+            size = _size;
+            buffer.resize(_size);
+            buffer.print();
+        }
+
+        else if (command == "delete")
+        {
+            int index;
+
+            cout << "Enter the index:" << endl;
+            cin >> index;
+
+            auto j = buffer.begin() + --index;
+            buffer.delete_n(j);
+            buffer.print();
+        }
+
+        else if (command == "delete_s")
+        {
+            buffer.delete_start();
+            buffer.print();
+        }
+
+        else if (command == "delete_e")
+        {
+            buffer.delete_end();
+            buffer.print();
+        }
+
+        else if (command == "print_r")
+        {
+            for (int i = 0; i < size; i++) {
+                cout << buffer[i] << " ";
+            }
+
+            cout << endl;
+        }
+
+        else if (command == "sort")
+        {
+            sort(buffer.begin(), buffer.end());
+
+            cout << "successfully sorted" << endl;
+        }
+    }
+}
