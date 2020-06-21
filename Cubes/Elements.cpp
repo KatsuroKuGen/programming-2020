@@ -54,9 +54,9 @@ Element::Element(float position_x, float position_y, float position_z, colour te
     _orientation = temp_orientation;
     Points temp_position(position_x, position_y, position_z);
     _position = temp_position;
-    _faces.resize(6);// куб с 6 сторонами
+    _faces.resize(6);
 
-    Points temp_point(0.5, -0.5, -0.5);// 6 сторон = 6 координат 
+    Points temp_point(0.5, -0.5, -0.5);
     _faces[0].push_back(temp_point);
     temp_point.set(0.5, 0.5, -0.5);
     _faces[0].push_back(temp_point);
